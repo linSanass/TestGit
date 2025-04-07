@@ -91,7 +91,6 @@ public class AttackPlayer : MonoBehaviour
         attackTime = 0.5f;
     }
 
-
     public void EnterGameOver()
     {
         SceneManager.LoadScene("GameOver");

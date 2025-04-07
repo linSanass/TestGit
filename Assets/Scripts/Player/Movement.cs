@@ -14,12 +14,6 @@ public class Movement : MonoBehaviour
 
     private float Gravity = -10f;
     
-    [SerializeField] private float GroundedOffset = 0.1f;
-    [SerializeField] private float GroundedRadius = 0.2f;
-    [SerializeField] private LayerMask GroundLayers;
-
-    public bool IsGrounded { get; private set; }//判断是否在地面
-
     private float ForwardSpeed;
     private float JumpSpeed;
 
@@ -41,13 +35,10 @@ public class Movement : MonoBehaviour
 
         SetupAnimationIDs();
     }
-
     
     // Update is called once per frame
     void Update()
     {
-
-        GroundedCheck();
         MoveForward();
         MoveRight();
         ToJump();
@@ -63,25 +54,19 @@ public class Movement : MonoBehaviour
 
     void MoveForward()
     {
-        if (IsGrounded)
-        {
-            float targetSpeed = ForwardValue * moveSpeed;
-            // 指定速率改变速度
-            ForwardSpeed = Mathf.MoveTowards(ForwardSpeed, targetSpeed, speedChangeRate * Time.deltaTime);
-            controller.Move(ForwardSpeed * Vector3.forward * Time.deltaTime);
-            animator.SetFloat(forwardMoveAniID, ForwardSpeed);
-        }
+        float targetSpeed = ForwardValue * moveSpeed;
+        // 指定速率改变速度
+        ForwardSpeed = Mathf.MoveTowards(ForwardSpeed, targetSpeed, speedChangeRate * Time.deltaTime);
+        controller.Move(ForwardSpeed * Vector3.forward * Time.deltaTime);
+        animator.SetFloat(forwardMoveAniID, ForwardSpeed);
     }
     void MoveRight()
     {
-        if (IsGrounded)
-        {
-            float targetSpeed = RightValue * moveSpeed;
-            // 指定速率改变速度
-            RightSpeed = Mathf.MoveTowards(RightSpeed, targetSpeed, speedChangeRate * Time.deltaTime);
-            controller.Move(RightSpeed * Vector3.right * Time.deltaTime);
-            animator.SetFloat(rightMoveAniID, RightSpeed);
-        }
+        float targetSpeed = RightValue * moveSpeed;
+        // 指定速率改变速度
+        RightSpeed = Mathf.MoveTowards(RightSpeed, targetSpeed, speedChangeRate * Time.deltaTime);
+        controller.Move(RightSpeed * Vector3.right * Time.deltaTime);
+        animator.SetFloat(rightMoveAniID, RightSpeed);
     }
 
     public void Move2(Vector2 moveInput)
@@ -91,32 +76,15 @@ public class Movement : MonoBehaviour
     }
     public void OnJump(bool IsPressSpace)
     {
-        if (IsPressSpace)
-        {
-            JumpSpeed = 6f;
-            ToJump();
-        }
+
+        JumpSpeed = 6f;
+        ToJump();
     }
 
     void ToJump()
     {
-        if (IsGrounded)
-        {
-            controller.Move(JumpSpeed * Vector3.up * Time.deltaTime);
-            JumpSpeed += Gravity * Time.deltaTime;
-        }
+        controller.Move(JumpSpeed * Vector3.up * Time.deltaTime);
+        JumpSpeed += Gravity * Time.deltaTime;
     }
 
-    /// <summary>
-    /// GroundedCheck 通过脚底下的球形碰撞是否与地面发生碰撞，返回值表示是否站在地面上
-    /// </summary>
-    void GroundedCheck()
-    {
-        Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
-        
-        if(Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore))
-        {
-            IsGrounded = true;
-        }
-    }
 }

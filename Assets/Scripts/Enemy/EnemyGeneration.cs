@@ -4,14 +4,12 @@ public class EnemyGeneration : MonoBehaviour
 {
     public GameObject[] enemyPrefab;
     public GameObject[] BossPrefabs;
-    private float EnemyTime;
     private float BossTime;
     private int currentWaveSize; // 当前波次敌人数目
     private int lastKillNum;
 
     void Start()
     {
-        EnemyTime = 0f;
         BossTime = 15.0f;
         currentWaveSize = 1; // 初始波次敌人数目设置为1
 
