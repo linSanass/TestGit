@@ -23,6 +23,8 @@ public class PlayerGetHit : MonoBehaviour
     private float invincibleTime;//ÎÞµÐÊ±¼ä
 
     private bool playerIsDie = false;
+    public static bool playerIsRecover = false;
+
 
     private bool isBePoisoned = false;
     private float inPoisonTime = 0f;
@@ -46,6 +48,11 @@ public class PlayerGetHit : MonoBehaviour
         {
             input.moveAction += movement.Move2;
             input.jumpAction += movement.OnJump;
+        }
+
+        if (playerIsRecover)
+        {
+            animator.SetBool("IsRescover", playerIsRecover);
         }
     }
 
@@ -90,6 +97,12 @@ public class PlayerGetHit : MonoBehaviour
         PoisonTime-= Time.deltaTime;
     }
 
+    //Animation Event
+    public void SetplayerRecover()
+    {
+        playerIsRecover = false;
+        animator.SetBool("IsRescover", playerIsDie);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (!playerIsDie)

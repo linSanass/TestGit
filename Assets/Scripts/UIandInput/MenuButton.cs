@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class MenuButton : MonoBehaviour
@@ -10,6 +11,13 @@ public class MenuButton : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene("Game");
     }
+    public void EnterGameSceneRe()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Game");
+        PlayerGetHit.playerIsRecover = true;
+    }
+
     public void EnterBeginScene()
     {
         SceneManager.LoadScene("BeginScene");

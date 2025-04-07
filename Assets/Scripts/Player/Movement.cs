@@ -22,12 +22,9 @@ public class Movement : MonoBehaviour
 
     public bool IsGrounded { get; private set; }//判断是否在地面
 
-    private float verticalSpeed = 0f;
-
     private float ForwardSpeed;
     private float JumpSpeed;
 
-    private Vector3 velocity = Vector3.zero;
     private float RightSpeed;
 
     private float ForwardValue = 0f;
@@ -37,7 +34,6 @@ public class Movement : MonoBehaviour
     
     private int forwardMoveAniID;
     private int rightMoveAniID;//横向移动
-    private int groundedAniID;
 
     // Start is called before the first frame update
     void Start()
@@ -54,7 +50,6 @@ public class Movement : MonoBehaviour
     {
 
         GroundedCheck();
-        //CalVerticalSpeed();
         MoveForward();
         MoveRight();
         ToJump();
@@ -65,7 +60,6 @@ public class Movement : MonoBehaviour
     {
         forwardMoveAniID = Animator.StringToHash("forwardSpeed");
         rightMoveAniID = Animator.StringToHash("rightSpeed");
-        groundedAniID = Animator.StringToHash("Grounded");
     }
 
 

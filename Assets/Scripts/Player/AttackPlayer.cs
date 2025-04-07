@@ -80,7 +80,6 @@ public class AttackPlayer : MonoBehaviour
     public void SetAttacktrue()
     {
         attackRange.SetActive(true);
-        
     }
     public void SetAttackfalse()
     {
