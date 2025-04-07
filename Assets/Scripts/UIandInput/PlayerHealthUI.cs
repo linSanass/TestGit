@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHealthUI : MonoBehaviour
 {
-    public TextMeshProUGUI playercurrentHealthTMP;
+    public Text PlayercurrentHealthTxt;
 
     public Slider PlayercurrentHealthSlider;
 
-    static public int currenthealth;
-    static public int maxhealth;
+    public static int currenthealth;
+    public static int maxhealth;
 
 
     private void Awake()
@@ -32,6 +31,6 @@ public class PlayerHealthUI : MonoBehaviour
 
     private void UpdateHealthText()
     {
-        playercurrentHealthTMP.text = currenthealth + "/" + maxhealth;
+        PlayercurrentHealthTxt.text = currenthealth + "/" + maxhealth;
     }
 }
