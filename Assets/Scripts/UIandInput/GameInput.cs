@@ -65,6 +65,3 @@ public class GameInput : MonoBehaviour,CourseGameInputAction.IPlayerActions
             aimAction?.Invoke();
     }
 }
-
-
-

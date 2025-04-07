@@ -10,8 +10,7 @@ public class Movement : MonoBehaviour
     private CharacterController controller;
 
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float turnSpeed = 0.15f;
-    [SerializeField] private float speedChangeRate = 10f;
+    [SerializeField] private float speedChangeRate = 7f;
 
     private float Gravity = -10f;
     
@@ -66,7 +65,9 @@ public class Movement : MonoBehaviour
     {
         if (IsGrounded)
         {
-            ForwardSpeed = ForwardValue * moveSpeed;
+            float targetSpeed = ForwardValue * moveSpeed;
+            // 指定速率改变速度
+            ForwardSpeed = Mathf.MoveTowards(ForwardSpeed, targetSpeed, speedChangeRate * Time.deltaTime);
             controller.Move(ForwardSpeed * Vector3.forward * Time.deltaTime);
             animator.SetFloat(forwardMoveAniID, ForwardSpeed);
         }
@@ -75,7 +76,9 @@ public class Movement : MonoBehaviour
     {
         if (IsGrounded)
         {
-            RightSpeed = RightValue * moveSpeed;
+            float targetSpeed = RightValue * moveSpeed;
+            // 指定速率改变速度
+            RightSpeed = Mathf.MoveTowards(RightSpeed, targetSpeed, speedChangeRate * Time.deltaTime);
             controller.Move(RightSpeed * Vector3.right * Time.deltaTime);
             animator.SetFloat(rightMoveAniID, RightSpeed);
         }

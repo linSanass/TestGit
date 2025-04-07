@@ -56,6 +56,12 @@ public class PlayerGetHit : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        input.moveAction -= movement.Move2;
+        input.jumpAction -= movement.OnJump;
+        input.AttackAction -= attacker.Attacking;
+    }
     // Update is called once per frame
     void Update()
     {
