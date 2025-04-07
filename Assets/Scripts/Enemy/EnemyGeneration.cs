@@ -24,7 +24,7 @@ public class EnemyGeneration : MonoBehaviour
         if ( AttackPlayer.KillNumber != lastKillNum)
         {
             // 检查是否达到生成下一波的条件（这里假设每4个敌人被击杀时升级）
-            if ((AttackPlayer.KillNumber- lastKillNum) % (4*currentWaveSize) == 0)
+            if ((AttackPlayer.KillNumber - lastKillNum) % (4*currentWaveSize) == 0)
             {
                 NextWave();
             }
@@ -62,7 +62,11 @@ public class EnemyGeneration : MonoBehaviour
 
     void BossGeneration()
     {
-        if (BossTime > 0) { BossTime -= Time.deltaTime; }
+        if (BossTime > 0) 
+        { 
+            BossTime -= Time.deltaTime;
+        }
+
         else
         {
             int num = Random.Range(0, BossPrefabs.Length);

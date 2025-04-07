@@ -9,26 +9,24 @@ public class ChangeWeapon : MonoBehaviour
 
     public GameObject weaponIcon;
 
-    public Button thisButton;
+    private Button thisButton;
 
-    public GameManager gameManager;
+    private GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
-        if (gameManager == null)
-        {
-            gameManager = FindObjectOfType<GameManager>();
-        }
-        if (thisButton == null)
-        {
-            thisButton=GetComponent<Button>();
-        }
+        gameManager = FindObjectOfType<GameManager>();
+        thisButton = GetComponent<Button>();
+
         thisButton.onClick.AddListener(SetOnClick);
     }
 
     public void SetOnClick()
     {
-        if (!weaponIcon.activeSelf||weaponIcon==null) { return; }
+        if (!weaponIcon.activeSelf||weaponIcon==null)
+        { 
+            return;
+        }
         gameManager.SetWuqi(weaponObj);
     }
 }

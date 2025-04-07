@@ -11,7 +11,6 @@ public class Movement : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float turnSpeed = 0.15f;
-    [SerializeField] private float speedOffset = 0.1f;
     [SerializeField] private float speedChangeRate = 10f;
 
     private float Gravity = -10f;
