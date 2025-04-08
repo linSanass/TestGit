@@ -21,7 +21,7 @@ public class EnemyGeneration : MonoBehaviour
     {
         if ( AttackPlayer.KillNumber != lastKillNum)
         {
-            // 检查是否达到生成下一波的条件（这里假设每4个敌人被击杀时升级）
+            // 检查是否达到生成下一波的条件（每4个敌人被击杀时增加波数）
             if ((AttackPlayer.KillNumber - lastKillNum) % (4*currentWaveSize) == 0)
             {
                 NextWave();
@@ -38,9 +38,9 @@ public class EnemyGeneration : MonoBehaviour
     {
         lastKillNum = AttackPlayer.KillNumber;
 
-        // 增加波次敌人数量，并确保不超过最大值10
+        // 增加波次敌人数量，并确保不超过最大值5
         currentWaveSize += 1;
-        currentWaveSize = Mathf.Min(currentWaveSize, 10);
+        currentWaveSize = Mathf.Min(currentWaveSize, 5);
 
         // 立即生成当前波次的所有敌人
         for (int i = 0; i < currentWaveSize; i++)
