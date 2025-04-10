@@ -5,25 +5,37 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
     public AudioSource BGM;
+
+    private bool Pause;
+
+    public AudioSource[] soundEffects;
 
     public List<GameObject> BagItems = new List<GameObject>();
 
     public List<GameObject> Wuqi = new List<GameObject>();
 
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
-        BGM=GetComponent<AudioSource>();
+        Pause = false;
     }
     public void SetAudio()
     {
-        if(BGM.isPlaying)
+        if(!Pause)
         {
             BGM.Pause();
+            Pause = true;
         }
         else
         {
             BGM.Play();
+            Pause = false;
         }
     }
 
@@ -36,10 +48,22 @@ public class GameManager : MonoBehaviour
             {
                 BagItems[i].SetActive(true);
             }
-            
         }
     }
 
+    public void PlaySFX(int sfxToplay)
+    {
+        if (!Pause)
+        {
+            soundEffects[sfxToplay].Play();
+        }
+    }
+    public void PlaySFXpitched(int sfxToplay)
+    {
+        soundEffects[sfxToplay].pitch = Random.Range(.8f, 1.2f);
+
+        PlaySFX(sfxToplay);
+    }
     public void SetWuqi(GameObject gameObject)
     {
         foreach(GameObject wuqi in Wuqi)

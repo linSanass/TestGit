@@ -65,6 +65,9 @@ public class EnemyState : MonoBehaviour
         {
             EnemycharacterStats.GetDamage(EnemycharacterStats);
             Debug.Log(EnemycharacterStats.CurrentHealth);
+
+            GameManager.instance.PlaySFXpitched(1);
+
             if (EnemycharacterStats.CurrentHealth <= 0)
             {
                 enemyStates = EnemyStates.DIE;
@@ -94,6 +97,8 @@ public class EnemyState : MonoBehaviour
         IsRun = false;
         IsDie = true;
         animator.SetBool("IsDie", IsDie);
+
+        GameManager.instance.PlaySFXpitched(0);
     }
 
     void MovetoPlayer()
